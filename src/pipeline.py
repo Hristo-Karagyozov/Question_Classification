@@ -37,18 +37,6 @@ class DistilBertPreprocessingPipeline:
         """
         return self.label_encoder.inverse_transform(encoded_labels)
 
-    def preprocess_text(self, text):
-        """
-        Tokenize and encode a single text sample for DistilBERT.
-
-        """
-        return self.tokenizer(
-            text,
-            max_length=self.max_length,
-            padding="max_length",
-            truncation=True,
-            return_tensors="pt"
-        )
 
     def preprocess_batch(self, texts, labels=None):
         """
