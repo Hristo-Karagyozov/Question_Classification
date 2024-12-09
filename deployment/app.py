@@ -6,8 +6,16 @@ import torch
 from src.pipeline import DistilBertPreprocessingPipeline
 from src.utils import preprocess_data
 
+label_dict = {
+    0:"Clarification",
+    1:"Factual",
+    2:"Operational",
+    3:"Summarization"
+}
+
+
 # Load the fine-tuned model
-MODEL_PATH = "../src/distillbert-finetuned-question-classifier/checkpoint-16"
+MODEL_PATH = "../src/distillbert-finetuned-question-classifier/checkpoint-24"
 tokenizer = DistilBertTokenizer.from_pretrained("distilbert-base-uncased")
 model = AutoModelForSequenceClassification.from_pretrained(MODEL_PATH)
 pipeline = DistilBertPreprocessingPipeline()
@@ -24,7 +32,7 @@ def predict(question):
         outputs = model(input_ids=ids, attention_mask=mask)
         predictions = torch.argmax(outputs.logits, dim=1).item()
 
-    return predictions
+    return label_dict[predictions]
 
 
 # Gradio Interface

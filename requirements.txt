@@ -1,8 +1,7 @@
+datasets==3.1.0
+numpy==2.2.0
+optuna==4.1.0
 pandas==2.2.3
 scikit_learn==1.5.2
 torch==2.5.1
 transformers==4.46.3
-
-scikit-learn~=1.5.2
-datasets~=3.1.0
-gradio~=5.7.1
